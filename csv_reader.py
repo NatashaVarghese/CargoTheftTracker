@@ -4,17 +4,15 @@ def readMyFile(filename):
     dict = {}
     with open(filename) as csvDataFile:
         csvReader = csv.reader(csvDataFile)
-        csvReader.next()    #for getting rid of header file
+        next(csvReader,None)    #for getting rid of header file
         for row in csvReader:
 
             # key is the Device Serial
             # value is [ID,Vin,MessageType,ReportType,MsgNum,TripState,ReceivedTime,
             #           Latitude,Longitude,CollectionTimeStamp,ManufacturerSerial]
 
-
-
             key  = row[1]
-            if dict.has_key(key):            
+            if key in dict:            
                 dict[key][0].append(row[0])
                 dict[key][1].append(row[2])
                 dict[key][2].append(row[3])
@@ -34,4 +32,4 @@ def readMyFile(filename):
 
 dict = readMyFile('ITM_20190121.csv')
 
-print(dict['1084067241'][0])
+print(dict['1084067241'][0][0])
