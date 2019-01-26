@@ -30,6 +30,3 @@ def readMyFile(filename):
             
     return dict
 
-dict = readMyFile('ITM_20190121.csv')
-
-print(dict['1084067241'][0][0])
