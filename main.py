@@ -2,13 +2,14 @@
 import csv_reader
 import warningLib
 
-WEEKEND_VAL = 3
+WEEKEND_VAL = 5
 ACCEL_VAL = 1
+AREA_VAL = 2
 
 
 def main():
 	data = csv_reader.readMyFile("ITM_20190121.csv")
-	
+
 	warnings = []
 
 	for key in data:
@@ -23,7 +24,7 @@ def main():
 			warning.append(0)
 			if warningLib.time_warning(data,key,stops[i]):
 				warning[i] += WEEKEND_VAL
-			# if warningLib.in_break_in_area(key,stops[i]):
+			# if warningLib.location_warning(data,key,stops[i]):
 				# warning[i] += AREA_VAL
 			for j in range(1,min(10,len(data[key][0])-stops[i])):
 				if warningLib.acceleration_warning(data,key,stops[i]+j):
