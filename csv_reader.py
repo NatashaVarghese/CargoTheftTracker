@@ -1,15 +1,29 @@
 import csv
+import operator
 
 def readMyFile(filename):
     dict = {}
     with open(filename) as csvDataFile:
         csvReader = csv.reader(csvDataFile)
+
+        sortedList = sorted(csvReader,key=operator.itemgetter(13))
+
         next(csvReader,None)    #for getting rid of header file
-        for row in csvReader:
+
+        for row in sortedList:
 
             # key is the Device Serial
-            # value is [ID,Vin,MessageType,ReportType,MsgNum,TripState,ReceivedTime,
-            #           Latitude,Longitude,CollectionTimeStamp,ManufacturerSerial]
+            # value is [ID                   (0),
+            #           Vin                  (1),
+            #           MessageType          (2),
+            #           ReportType           (3),
+            #           MsgNum               (4),
+            #           TripState            (5),
+            #           ReceivedTime         (6),
+            #           Latitude             (7),
+            #           Longitude,           (8),
+            #           CollectionTimeStamp  (9),
+            #           ManufacturerSerial   (10)]
 
             key  = row[1]
             if key in dict:            
@@ -27,6 +41,4 @@ def readMyFile(filename):
             else:
                 dict[key] = [[row[0]],[row[2]],[row[3]],[row[4]],[row[5]],
                 [row[6]],[row[7]],[row[8]],[row[9]],[row[13]],[row[14]]]
-            
     return dict
-
