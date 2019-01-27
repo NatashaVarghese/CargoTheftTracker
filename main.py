@@ -1,4 +1,3 @@
-
 import csv_reader
 import warningLib
 
@@ -24,13 +23,13 @@ def main():
 			warning.append(0)
 			if warningLib.time_warning(data,key,stops[i]):
 				warning[i] += WEEKEND_VAL
-			# if warningLib.location_warning(data,key,stops[i]):
-				# warning[i] += AREA_VAL
+			if warningLib.location_warning(data,key,stops[i]):
+				warning[i] += AREA_VAL
 			for j in range(1,min(10,len(data[key][0])-stops[i])):
 				if warningLib.acceleration_warning(data,key,stops[i]+j):
 					warning[i]+= ACCEL_VAL
 		warnings.append(max(warning)) if len(warning)>0 else warnings.append(0)
 	return warnings
 
-print(main())
+main()
 
