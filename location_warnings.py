@@ -10,7 +10,6 @@ def location_warnings(dictionary, truckID, index):
 
     place = json_data['results'][0]['formatted_address']
     place=place.replace(",","").split()
-    print(place)
     if "Vancouver" in place or "Toronto" in place or "Montreal" in place or "Peel" in place:
         return True
     return False

@@ -41,3 +41,10 @@ def baseRoute():
 	##return (tuple(warnings), 200)
 	return Response(json.dumps(warnings), mimetype='application/json')
 
+@app.route('/truck_list')
+def truckList():
+	return 'hello world'
+
+@app.route('/events')
+def eventList():
+	return 'fetch events'
